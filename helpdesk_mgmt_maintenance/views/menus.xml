@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu Items Hierachy -->
+
+    <!--###########################################
+    # Menu Maintenance: 
+    ###########################################-->
+
+   <!-- Action Maintenance Equipments Equipments -->
+    <record id="helpdesk_mgmt_equipments_equipments_action" model="ir.actions.act_window">
+        <field name="name">Equipments</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_mode">tree,form,pivot,graph,calendar</field>
+    </record>
+
+    <!-- Menu Item Maintenance Equipments Equipments -->
+    <menuitem 
+            id="helpdesk_mgmt_equipments_equipments_menu_item"
+            parent="maintenance.menu_equipment_form"
+            action="helpdesk_mgmt_equipments_equipments_action"
+            sequence="111"
+    />
+
+    <!-- Action Maintenance Equipments Tickets -->
+    <record id="helpdesk_mgmt_equipments_tickets_action" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item Maintenance Equipments Tickets -->
+    <menuitem 
+            id="helpdesk_mgmt_equipments_tickets_menu_item"
+            parent="maintenance.menu_equipment_form"
+            action="helpdesk_mgmt_equipments_tickets_action"
+            sequence="112"
+    />
+
+    <!-- Action Maintenance Equipments Traceability-->
+   <record id="helpdesk_mgmt_traceability_action" model="ir.actions.act_window">
+        <field name="name">Traceability</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tracealibity</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item Maintenance Equipments Traceability -->
+     <menuitem 
+            id="helpdesk_mgmt_maintenance_traceability_menu_item"
+            name="Traceability"
+            parent="maintenance.menu_equipment_form"
+            action="helpdesk_mgmt_traceability_action"
+            sequence="114"
+    /> 
+
+
+    <!-- Menu Configuration Datos Equipaments -->
+    <menuitem
+        id="equipment_data_menu"
+        name="Equipament Data"
+        parent="maintenance.menu_maintenance_title"
+        sequence="120"
+    />
+
+    <!--###########################################
+    # Menu Helpdesck mgmt: 
+    ###########################################-->
+    
+    <!-- helpdesk.ticket : actions -->
+    <!-- Action Helpdesk Tickets Tickets -->
+    <record id="helpdesk_mgmt_tickets_action" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <!-- Menu Item Helpdesk Tickets Tickets -->
+    <menuitem 
+            id="helpdesk_tickets_tickets_menu_item"
+            parent="helpdesk_mgmt.helpdesk_ticket_menu"
+            action="helpdesk_mgmt_tickets_action"
+            sequence="111"
+    />
+
+
+    <!-- Action Helpdesk Tickets Equipments -->
+    <record id="helpdesk_mgmt_equipments_action" model="ir.actions.act_window">
+        <field name="name">Equipaments</field>
+        <field name="res_model">maintenance.equipment</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+    <!-- Menu Item Helpdesk Tickets Equipments -->
+    <menuitem 
+            id="helpdesk_tickets_equipaments_menu_item"
+            parent="helpdesk_mgmt.helpdesk_ticket_menu"
+            action="helpdesk_mgmt_equipments_action"
+            sequence="112"
+    />
+
+
+    <!-- Action Helpdesk Tickets Projects-->
+    <record id="helpdesk_mgmt_projects_action" model="ir.actions.act_window">
+        <field name="name">Projects</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+    <!-- Menu Item Helpdesk Tickets Projects -->
+    <menuitem 
+            id="helpdesk_tickets_projects_menu_item"
+            parent="helpdesk_mgmt.helpdesk_ticket_menu"
+            action="helpdesk_mgmt_projects_action"
+            sequence="113"
+    />
+
+
+
+    <!-- Menu Item Helpdesk Tickets Data -->
+    <menuitem
+        id="tickets_data_menu"
+        name="Tickets Data"
+        parent="helpdesk_mgmt.helpdesk_ticket_config_main_menu"
+        sequence="100"
+    />
+
+
+
+
+
+    <!-- Menu Configuration Datos Equipments -->
+
+</odoo>
+
+

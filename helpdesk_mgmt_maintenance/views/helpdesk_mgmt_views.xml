@@ -41,7 +41,6 @@
     <field name="res_model">project.project</field>
     <field name="binding_model_id" ref="project.model_project_project"/> 
     <field name="view_mode">kanban,tree,form</field>
-    <field name="domain">[('ticket_ids', '=', active_id)]</field>
     </record> 
 
     <!-- Tasks Project button action  -->
@@ -77,7 +76,7 @@
             <!-- context="{'search_default_equipment_ids': active_id, 'default_equipment_ids': active_id}" -->
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                 <!-- Project count button -->
-                <button class="oe_stat_button" name="%(helpdesk_tickets_action_from_project)d"
+                <button class="oe_stat_button" name="%(helpdesk_mgmt_projects_action)d"
                     type="action" icon="fa-puzzle-piece"
                     attrs="{'invisible': [('project_id', '=', False)]}">
                     <div class="o_field_widget o_stat_info">
@@ -102,7 +101,7 @@
                 </button>
                 <!-- Equipment count Button -->
                 <button class="oe_stat_button" name="%(helpdesk_tickets_action_from_equipment)d"
-                    type="action" icon="fa-desktop"
+                    type="action" icon="fa-cubes"
                     attrs="{'invisible': [('equipment_ids', '=', False)]}">
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">

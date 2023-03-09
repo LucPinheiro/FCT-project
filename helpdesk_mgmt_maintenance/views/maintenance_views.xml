@@ -132,6 +132,11 @@
                 <field name="ticket_ids" string="Tickets" widget='many2many_tags' />
                 <field name="ticket_count" string="Nº Tickets" />
             </xpath>
+            <!-- Hide company field view tree -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
         </field> 
     </record> 
 
@@ -154,11 +159,16 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
         <field name="arch" type="xml">
+
+            <!-- Image -->
+            <!-- ····· -->
             <xpath expr="//div[hasclass('oe_title')]" position="before">
                 <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
             </xpath>
+
+            <!-- Buttons -->
+            <!-- ······· -->
             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
-                <!-- Ticket count Button icon="fa-file"-->
                 <button class="oe_stat_button" name="%(helpdesk_ticket_action_from_equipment)d"
                  type="action" icon="fa-ticket"  
                   attrs="{'invisible': [('ticket_ids', '=', False)]}">
@@ -182,11 +192,28 @@
                 </button>
             </xpath>
 
+            <!-- Body -->
+            <!-- ···· -->
+
+            <!-- Hide company field view form -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="equipment_brand" />
+            </xpath>
+
+
             <xpath expr="//field[@name='location']" position="after">
                 <field name="ticket_active" string='No Ticket'/>
             </xpath>
 
-        <!-- Pensar si seran las 2 cosas: empleados y departamento para el equipo -->
+            <!-- Pensar si seran las 2 cosas: empleados y departamento para el equipo -->
+            
+            <!-- Pages -->
+            <!-- ····· -->
+
             <!-- Hide Page Description -->
             <xpath expr="//notebook//page[@name='description']" position="attributes">
                 <attribute name="invisible">1</attribute>

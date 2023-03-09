@@ -1,1 +1,1 @@
-* Lucia Pinheiro <lucia.pinheiro@solvos.es>
+* Luciana Pinheiro <gerallupinheiro@gmail.com>

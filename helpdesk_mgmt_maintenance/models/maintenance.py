@@ -1,4 +1,4 @@
-# © 2023 Solvos Consultoría Informática (<http://www.solvos.es>)
+# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import  models, fields, api
@@ -20,11 +20,11 @@ class MaintenanceEquipment(models.Model):
     name_ticket = fields.Char(String='Ticket Name')
     description_ticket = fields.Html(String='Description')
     user_id_ticket = fields.Many2one('helpdesk.ticket')
+    stage_id_ticket = fields.Many2one('helpdesk.ticket.stage', String='Stage')
     project_id_ticket = fields.Many2one('project.project', String='Projects') #es heredado de helpdesk
     create_date_ticket = fields.Date()
     last_stage_update_ticket = fields.Datetime(default=fields.Datetime.now)
     category_id_ticket = fields.Many2one('helpdesk.ticket.category', String='Ticket category')
-    stage_id_ticket = fields.Many2one('helpdesk.ticket.stage')
     priority_ticket = fields.Selection(
         selection=[
             ("0", "Low"),
@@ -41,6 +41,8 @@ class MaintenanceEquipment(models.Model):
     # status_id = fields.Many2one('equipment.status', String='Status', tracking=True)
 
     model = fields.Char('Model Number', copy=False)
+    equipment_brand = fields.Char('Brand')
+    equipment_status_id = fields.Char(String="Status")
     schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. ")
     create_date = fields.Datetime()
 

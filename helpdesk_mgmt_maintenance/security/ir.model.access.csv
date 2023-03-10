@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_equipment_status_user,access_equipment_status_user,model_equipment_status,base.group_user,1,0,0,0
-access_equipment_status_admin,access_equipment_status_admin,model_equipment_status,maintenance.group_equipment_manager,1,1,1,1
+access_maintenance_equipment_report_wizard,acess.maintenance.equipment.report.wizard,model_maintenance_equipment_report_wizard,,1,1,1,1
+access_maintenance_equipment_brand,acess.maintenance.equipment.brand,model_maintenance_equipment_brand,,1,1,1,1
+access_maintenance_equipment_status,acess.maintenance.equipment.status,model_maintenance_equipment_status,,1,1,1,1
+access_maintenance_equipment_line,acess.maintenance.equipment.line,model_maintenance_equipment_line,,1,1,1,1

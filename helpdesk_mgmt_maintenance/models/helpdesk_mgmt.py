@@ -4,20 +4,11 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-# ---------------------------------
-# Helpdesk Ticket Team: 
-# ---------------------------------
-
-# Class 1
-class HelpdeskTicketTeam(models.Model):
-    _inherit = "helpdesk.ticket.team"
-
-
 
 # ---------------------------------
 # Helpdesk Ticket : 
 # ---------------------------------
-# Class 2
+# Class 1
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
@@ -29,23 +20,29 @@ class HelpdeskTicket(models.Model):
     departament_id = fields.Many2one('hr.department')
     serial_no = fields.Char('maintenance.equipment', related='equipment_id.serial_no', String='Serial Number')
     model_equipament = fields.Char('maintenance.equipment', related='equipment_id.model', String ='Modal')
+    equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_id.equipment_brand', String='Brand')
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id')
     cost = fields.Float('maintenance.equipment', related='equipment_id.cost', String='Cost')
     description_equipment = fields.Html(String='Description')
-
     assigned_date = fields.Datetime()
     closed_date = fields.Datetime()
-
-
-
     project_id = fields.Many2one('project.project', string='Project')
     project_id_count = fields.Integer('project.project', compute= '_compute_project_id_count', store=True)
     task_id = fields.Many2one('project.task', string='Task')
     task_id_count = fields.Integer('project.task', compute= '_compute_task_id_count', store=True)
+    
     progress = fields.Float("Progress", compute='_compute_progress_hours', store=True, group_operator="avg", help="Display progress of current task.")
     progress_percentage = fields.Float(compute='_compute_progress_percentage')
     planned_hours = fields.Float()
     initially_hours = fields.Float()
+
+    tracking = fields.Selection([
+        ('serial', 'By Unique Serial Number'),
+        ('lot', 'By Lots'),
+        ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
+    
+    
+
 
     # total_hours_spent = fields.Float("Total Hours", compute='_compute_total_hours_spent', store=True, help="Time spent on this task, including its sub-tasks.")
     # remaining_hours = fields.Float("Remaining Hours", compute='_compute_remaining_hours', store=True, readonly=True, help="Total remaining time, can be re-estimated periodically by the assignee of the task.")
@@ -111,6 +108,14 @@ class HelpdeskTicket(models.Model):
     # ---------------------------------
 
 
+    # ---------------------------------
+    # Helpdesk Ticket Team: 
+    # ---------------------------------
+
+    # Class 2
+    class HelpdeskTicketTeam(models.Model):
+        _inherit = "helpdesk.ticket.team"
+
 
 
     # ---------------------------------
@@ -120,7 +125,6 @@ class HelpdeskTicket(models.Model):
     class HelpdeskTicketStage(models.Model):
         _inherit = "helpdesk.ticket.stage"
 
-        ticket_id = fields.Many2one('helpdesk.ticket', String='Tickets Number')
 
     # ---------------------------------
     # Helpdesk Category: 

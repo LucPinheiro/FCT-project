@@ -20,19 +20,22 @@
         "stock",
     ],
     "data": [
-        # "security/ir.model.access.csv",
+        "data/maintenance_demo.xml",
+        "security/ir.model.access.csv",
         # "security/maintenance.xml",
-        "report/equipment_traceability_report.xml",
+        "report/equipment_traceability_template.xml",
+        "report/equipment_line_traceability_template.xml",
+        "report/ticket_traceability_template.xml",
         "views/menus.xml",     
         "views/maintenance_views.xml",
-        # "views/maintenance_equipment_brand",
+        "views/maintenance_equipment_line.xml",
+        "views/maintenance_equipment_brand.xml",
+        "views/maintenance_equipment_status.xml",
         # "views/maintenance_request.xml",
         "views/helpdesk_mgmt_views.xml",
         "views/project_views.xml",
         "views/traceability.xml",
-
-
-        # "wizard/wizard.xml",
+        "wizard/wizard.xml",
        
     ],
     'installable': True,

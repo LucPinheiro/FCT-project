@@ -32,7 +32,7 @@ class MaintenanceEquipmentWizard(models.TransientModel):
     def action_search_orders(self):
         form_data = self.read()[0]
 
-        orders = self.env['maintenance.equipment'].search_read([
+        orders = self.env['maintenance.equipment.line'].search_read([
             ('create_date', '>=', form_data['date_start']),
             ('create_date', '<=', form_data['date_end'])
         ])
@@ -42,4 +42,4 @@ class MaintenanceEquipmentWizard(models.TransientModel):
             'orders': orders
         }
 
-        return self.env.ref('helpdesk_mgmt_maintenance.action_report_equipment_traceabilitty').report_action(self, data=data)
+        return self.env.ref('helpdesk_mgmt_maintenance.action_equipment_line_traceability_template').report_action(self, data=data)

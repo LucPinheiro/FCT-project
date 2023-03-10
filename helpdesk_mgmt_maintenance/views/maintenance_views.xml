@@ -128,6 +128,9 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='assign_date']" position="after">
+                <field name="equipment_line_ids" string="Line" widget='many2many_tags' />
+            </xpath>
             <xpath expr="//field[@name='technician_user_id']" position="after">
                 <field name="ticket_ids" string="Tickets" widget='many2many_tags' />
                 <field name="ticket_count" string="Nº Tickets" />
@@ -202,6 +205,7 @@
             
             <xpath expr="//field[@name='company_id']" position="after">
                 <field name="equipment_brand" />
+                <field name="equipment_status_id" />
             </xpath>
 
 
@@ -223,29 +227,18 @@
                 <attribute name="invisible">1</attribute>
             </xpath> -->
 
+            <!-- Page Production Information -->
+            <xpath expr="//notebook//page[@name='product_information']" position="inside">
+                <group name="name" string="Lines">
+                        <field name="equipment_line_ids" nolabel="1" />
+                </group>
+            </xpath>
+
             <xpath expr="//notebook//page[@name='maintenance']" position="after">
                 <page string="Helpdesk">
                     <group name="name" string="Lines">
-                            <!-- <field name="number_ticket_id" /> -->
                             <field name="ticket_ids" nolabel="1" />
-                            <!-- <field name="user_id_ticket" />
-                            <field name="project_id_ticket" />
-                            <field name="description_ticket" />
-                            <field name="create_date_ticket" />
-                            <field name="last_stage_update_ticket" />
-                            <field name="category_id_ticket" />
-                            <field name="stage_id_ticket" />
-                            <field name="priority_ticket" widget="priority" /> -->
-
-
-                         <!-- Falta crear grupo-->
-                        <!-- <group name="name" string="Lines">
-                            <field name="equipment_line_ids" nolabel="1" />
-                        </group> -->
-
                     </group>
-
-                     <!-- Equipaments Orders-->
                 </page>
 
                 <page string="Traceability">
@@ -331,7 +324,7 @@
     -->
 
 
-    
+
 
 
 

@@ -4,12 +4,11 @@
 from odoo import models, fields
 
 
-class MaintenanceEquipmentBrand(models.Model):
-    _name = 'maintenance.equipment.brand'
-    # _inherit = ['mail.alias.mixin', 'mail.thread']
-    _description = 'Maintenance Equipment Brand'
+class MaintenanceEquipmentStatus(models.Model):
+    _name = "maintenance.equipment.status"
+    _description = "Maintenance Equipment Status"
 
-    name = fields.Char('Brand Name', required=True, translate=True)
+    name = fields.Char('Status', required=True, translate=True)
     color = fields.Integer('Color Index')
     partner_id = fields.Char('res.partner', String= 'Suppliers')
     

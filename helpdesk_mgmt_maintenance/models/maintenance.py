@@ -12,7 +12,6 @@ class MaintenanceEquipment(models.Model):
     _inherit = ["maintenance.equipment", "image.mixin"]
     _name = "maintenance.equipment"
 
-    helpdesk = fields.Char()
     ticket_id = fields.Char(String='Tickets Number')
     ticket_active = fields.Boolean()
     ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')
@@ -38,17 +37,12 @@ class MaintenanceEquipment(models.Model):
         ('serial', 'By Unique Serial Number'),
         ('lot', 'By Lots'),
         ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
-    # status_id = fields.Many2one('equipment.status', String='Status', tracking=True)
-
     model = fields.Char('Model Number', copy=False)
-    equipment_brand = fields.Char('Brand')
-    equipment_status_id = fields.Char(String="Status")
+    equipment_brand = fields.Many2one('maintenance.equipment.brand', String='Brand')
+    equipment_status_id = fields.Many2one('maintenance.equipment.status', String='Status')
     schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. ")
-    create_date = fields.Datetime()
-
-    equipment_line_ids = fields.One2many('maintenance.equipment.line', inverse_name='equipment_id')
-    # order_line = fields.One2many('sale.order.line', 'order_id', string='Order Lines', states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=True, auto_join=True)
-
+    create_date = fields.Datetime(String='Creation Date', index=True)
+    equipment_line_ids = fields.Many2many('maintenance.equipment.line', inverse_name='equipment_id')
 
 
     # ---------------------------------

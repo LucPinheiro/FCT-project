@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="equipment_line_traceability_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                <div class="oe_structure" />
+                    <div class="page">
+                        <div class="text-center"><h2>Equipment Line Traceability</h2></div>
+                        <br/>
+                        <br/>
+                            <t t-if="doc.ticket_ids">
+                                <table class="table table-sd o_main_table" name="traceability">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color:lightgray;">Line:<span t-field="doc.name"/></th>
+                                            <t t-set="equipment_ids_count" t-value="0"/>
+                                            <t t-foreach="doc.equipment_id" t-as="line">
+                                                <t t-set="equipment_ids_count" t-value="equipment_ids_count + 1"/>
+                                                <tr>
+                                                    <td> 
+                                                        <t t-if="doc.equipment_id">
+                                                            <span t-field="line.name" />
+                                                                <table class="table table-sd o_main_table" name="equipments">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td> 
+                                                                                <t t-if="doc.equipment_id">
+                                                                                    <table class="table table-sd o_main_table" name="tickets">
+                                                                                        <thead>
+                                                                                            <tr style="background-color:lightgray;">
+                                                                                                <th>Ticket Number</th>
+                                                                                                <th>Ticket Name</th>
+                                                                                                <th>Priority</th>
+                                                                                                <th>Created on</th>
+                                                                                                <th>Stage</th>
+                                                                                                <th>Assigned user</th>
+                                                                                                <th>Progress</th>
+                                                                                                <!-- <th class="text-right">Progress</th> -->
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <tbody class="tickets_tbody">
+                                                                                                    <t t-set="ticket_count" t-value="0"/>
+                                                                                                    <t t-foreach="doc.ticket_ids" t-as="line">
+                                                                                                        <t t-set="ticket_count" t-value="ticket_count + 1"/>
+                                                                                                        <tr>
+                                                                                                            <td> <span t-field="line.number" /> </td>
+                                                                                                            <td> <span t-field="line.name" /> </td>
+                                                                                                            <td> <span t-field="line.priority"/> </td>
+                                                                                                            <td> <span t-field="line.create_date"/> </td>
+                                                                                                            <td> <span t-field="line.stage_id"/> </td>
+                                                                                                            <td> <span t-field="line.user_id"/> </td>
+                                                                                                            <td> <span t-field="line.progress"/> </td> 
+                                                                                                        </tr>                                              
+                                                                                                    </t>
+                                                                                                </tbody>
+                                                                                             </tr>
+                                                                                        </thead>
+                                                                                    </table>
+
+                                                                                </t>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>    
+                                                        </t>
+                                                    </td>
+                                                </tr>                                              
+                                            </t>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </t>
+
+                    </div>                       
+                 
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_equipment_line_traceability_template" model="ir.actions.report">
+        <field name="name">Equipment Line Traceability</field>
+        <field name="model">maintenance.equipment.line</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">helpdesk_mgmt_maintenance.equipment_line_traceability_report_template</field>
+        <field name="report_file">helpdesk_mgmt_maintenance.equipment_line_traceability_report_template</field>
+        <field name="binding_model_id" ref="helpdesk_mgmt_maintenance.model_maintenance_equipment_line"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

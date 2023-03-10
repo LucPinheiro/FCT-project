@@ -111,31 +111,27 @@
                         <span class="o_stat_text">Equipment</span>
                     </div>
                 </button>
+                <button class="oe_stat_button" name="%(action_report_ticket_traceabilitty)d"
+                 type="action" icon="fa-arrow-up"
+                  attrs="{'invisible': [('tracking', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="tracking" invisible="1" />
+                        </span>
+                        <span class="o_stat_text">Traceability</span>
+                    </div>
+                </button>
+            </xpath>
+            <!-- Hide company field view tree -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
-            <!-- Helpdesk Ticket XAPTH BODY -->
-            <xpath expr="//field[@name='priority']" position="after">
-                    <field name="equipment_id" />
-            </xpath>
-            <xpath expr="//group//field[@name='tag_ids']" position="after">
-                <field name="equipment_id" string='Equipment'/>
-                    <field name="progress" />
-                <field name="planned_hours" />
-                <field name="initially_hours" />
-            </xpath>
             <xpath expr="//notebook//page[@name='other_info']" position="after">
                 <page string="Maintenance">
-                    <group>
-                    <field name="equipment_ids" widget='many2many_tags' />
-                    <field name="employee_id" />
-                    <field name="departament_id" />
-                    <field name="serial_no"  string='Serial Number' />
-                    <field name="model_equipament" string='Modal'/>
-                    <field name="category_id" />
-                    <field name="cost" string='Cost' />
-
+                    <group name="name" string="Lines">
+                        <field name="equipment_ids" nolabel="1" />
                     </group>
-
                 </page>
 
                 <page string="Timesheet">
@@ -145,8 +141,15 @@
                 </page>
 
                 <page string="Traceability">
-                    <group>
-
+                     <group>
+                        <group>
+                            <field name="tracking" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="number" />
+                            <field name="create_date" />
+                            <field name="user_id" />
+                        </group>
                     </group>
                 </page>
 
@@ -159,16 +162,22 @@
 
             </xpath>
 
-            <!-- Remove requirements description field -->
-            <!-- <xpath expr="//notebook//page[@name='description']" position="attributes">
-            <attribute name="required">False</attribute>
-            </xpath> -->
-            <!-- <xpath expr="//notebook//page[@name='description']" position="attributes">
-            <attribute name="invisible">1</attribute>
-            </xpath> -->
-
         </field>
     </record>
+
+    <record id="help_main_helpdesk_ticket_tree_reduced" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree (Helpdesk Maintenance)</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="help_main_helpdesk_ticket_tree"/>
+        <field name="mode">primary</field>
+        <field eval="101" name="priority"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+        </field>
+    </record> 
     
 
 
@@ -176,44 +185,5 @@
 
 
 
-
-
-
-    <!-- Helpdesk Ticket kanban view -->
-
-    <!-- Helpdesk kanban view -->
-
-    <!-- Helpdesk kanban view -->
-
-    <!-- Helpdesk kanban view -->
-
-
-    <!--###########################################
-    # Helpdesk Ticket Stages: 
-    ###########################################-->
-
-    <record id="help_main_helpdesk_ticket_stage_tree" model="ir.ui.view">
-        <field name="name">helpdesk.ticket.stage.tree (Helpdesk Maintenance)</field>
-        <field name="model">helpdesk.ticket.stage</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.view_helpdesk_ticket_stage_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
-                <field name="ticket_id"  string='Tickets' widget='many2many_tags' />
-            </xpath>
-        </field>
-    </record>
-
-    <record id="help_main_helpdesk_ticket_stage_form" model="ir.ui.view">
-        <field name="name">helpdesk.ticket.stage.form (Helpdesk Maintenance)</field>
-        <field name="model">helpdesk.ticket.stage</field>
-        <field name="inherit_id" ref="helpdesk_mgmt.view_helpdesk_ticket_stage_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='sequence']" position="before">
-                <field name="ticket_id"  string='Tickets' widget='many2many_tags' />
-            </xpath>
-        </field>
-    </record>
-
-    
 
 </odoo>

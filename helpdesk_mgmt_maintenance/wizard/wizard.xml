@@ -21,19 +21,19 @@
     </record>
 
     <!-- Definición de la acción -->
-    <record id="helpdesk_mgmt_wizard_traceability_action" model="ir.actions.act_window">
-        <field name="name">Equipment Traceability</field>
-        <field name="res_model">sale.order.report.wizard</field>
+    <record id="helpdesk_mgmt_wizard_traceability_line_action" model="ir.actions.act_window">
+        <field name="name">Equipment Line Traceability</field>
+        <field name="res_model">maintenance.equipment.report.wizard</field>
         <field name="view_mode">form</field>
-        <!-- <field name="view_id" ref="sale_order_report_wizard_view_form" /> -->
+        <field name="view_id" ref="maintenance_equipment_report_wizard_view_form" />
         <field name="target">new</field>
     </record>
 	
 	<!-- Definición del menú -->
     <menuitem
-        id="maintenance_traceability_menu_item"
-        name="Equipment Traceability"
-        action="helpdesk_mgmt_wizard_traceability_action"
+        id="maintenance_traceability_line_menu_item"
+        name="Equipment Line Traceability"
+        action="helpdesk_mgmt_wizard_traceability_line_action"
         parent="maintenance.menu_equipment_form"
         sequence="120" />
 

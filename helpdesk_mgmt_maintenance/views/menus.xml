@@ -22,12 +22,28 @@
             sequence="111"
     />
 
+    
+   <!-- Action Maintenance Equipments Lines -->
+    <record id="helpdesk_mgmt_equipments_line_action" model="ir.actions.act_window">
+        <field name="name">Equipments Lines</field>
+        <field name="res_model">maintenance.equipment.line</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <!-- Menu Item Maintenance Equipments Lines -->
+    <menuitem 
+            id="helpdesk_mgmt_equipments_lines_menu_item"
+            parent="maintenance.menu_equipment_form"
+            action="helpdesk_mgmt_equipments_line_action"
+            sequence="112"
+    />
+
     <!-- Action Maintenance Equipments Tickets -->
     <record id="helpdesk_mgmt_equipments_tickets_action" model="ir.actions.act_window">
         <field name="name">Tickets</field>
         <field name="res_model">helpdesk.ticket</field>
         <field name="view_mode">tree,form,pivot,graph</field>
-        <field name="target">new</field>
+        <!-- <field name="target">new</field> -->
     </record>
 
     <!-- Menu Item Maintenance Equipments Tickets -->
@@ -35,7 +51,7 @@
             id="helpdesk_mgmt_equipments_tickets_menu_item"
             parent="maintenance.menu_equipment_form"
             action="helpdesk_mgmt_equipments_tickets_action"
-            sequence="112"
+            sequence="113"
     />
 
     <!-- Action Maintenance Equipments Traceability-->
@@ -44,7 +60,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tracealibity</field>
         <field name="view_mode">tree,form,pivot,graph</field>
-        <field name="target">new</field>
     </record>
 
     <!-- Menu Item Maintenance Equipments Traceability -->
@@ -61,9 +76,39 @@
     <menuitem
         id="equipment_data_menu"
         name="Equipament Data"
-        parent="maintenance.menu_maintenance_title"
+        parent="maintenance.menu_maintenance_configuration"
         sequence="120"
     />
+    <!-- Action Equipments Brand-->
+   <record id="helpdesk_mgmt_maintenance_equipment_brand_action" model="ir.actions.act_window">
+        <field name="name">Equipments Brand</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">maintenance.equipment.brand</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+    <menuitem
+        id="equipment_brand_item_menu"
+        name="Equipament Brand"
+        parent="maintenance.menu_maintenance_configuration"
+        action="helpdesk_mgmt_maintenance_equipment_brand_action"
+        sequence="122"
+    />
+
+    <!-- Action Equipments Stages-->
+   <record id="helpdesk_mgmt_maintenance_equipment_status_action" model="ir.actions.act_window">
+        <field name="name">Equipments Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">maintenance.equipment.status</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+    <menuitem
+        id="equipment_status_item_menu"
+        name="Equipament Status"
+        parent="maintenance.menu_maintenance_configuration"
+        action="helpdesk_mgmt_maintenance_equipment_status_action"
+        sequence="124"
+    />
+
 
     <!--###########################################
     # Menu Helpdesck mgmt: 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
+        <data>
 
         <!-- Equipment brand -->
         <record id="brand_samsung" model="maintenance.equipment.brand">
@@ -15,28 +15,34 @@
         </record>
         <record id="brand_lenovo" model="maintenance.equipment.brand">
             <field name="name">Lenovo</field>
-            <field name="technician_user_id" ref="base.user_admin"/>
+
             <field name="color">3</field>
         </record>
         <record id="brand_dell" model="maintenance.equipment.brand">
             <field name="name">Dell</field>
-            <field name="technician_user_id" ref="base.user_admin"/>
+
         </record>
         <record id="brand_asus" model="maintenance.equipment.brand">
             <field name="name">Asus</field>
-            <field name="technician_user_id" ref="base.user_admin"/>
-            <field name="color">3</field>
+
+            <!-- <field name="color">3</field> -->
         </record>
         <record id="brand_msi" model="maintenance.equipment.brand">
             <field name="name">MSI</field>
-            <field name="technician_user_id" ref="base.user_admin"/>
         </record>
         <record id="brand_razer" model="maintenance.equipment.brand">
             <field name="name">Razer</field>
-            <field name="technician_user_id" ref="base.user_admin"/>
         </record>
 
-       
-       
-    </data>
+        <!-- Equipment Satus -->
+        <record id="new_status" model="maintenance.equipment.status">
+            <field name="name">New</field>
+        </record>
+        <record id="new_repared" model="maintenance.equipment.status">
+            <field name="name">Repared</field>
+        </record>
+        <record id="new_scrap" model="maintenance.equipment.status">
+            <field name="name">Scrap</field>
+        </record>
+  </data>
 </odoo>

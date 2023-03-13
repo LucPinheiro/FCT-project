@@ -19,11 +19,11 @@ class MaintenanceEquipmenteLine(models.Model):
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id')
     assign_date = fields.Date('maintenance.equipment', related='equipment_id.assign_date', String='Assigned Date')
     cost = fields.Float('maintenance.equipment', related='equipment_id.cost', String='Cost')
-    equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_id.equipment_brand', String='Brand')
-    equipment_status_id = fields.Many2one('maintenance.equipment.status', related='equipment_id.equipment_status_id', String='Status')
+    # equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_id.equipment_brand', String='Brand')
+    # equipment_status_id = fields.Many2one('maintenance.equipment.status', related='equipment_id.equipment_status_id', String='Status')
     technician_user_id = fields.Many2one('res.users', related='equipment_id.technician_user_id', String='Technician')
-    ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_id.ticket_ids', String='Tickets Number')
-    ticket_count = fields.Integer('helpdesk.ticket', related='equipment_id.ticket_count', String='Tickets Number')
+    # ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_id.ticket_ids', String='Tickets Number')
+    # ticket_count = fields.Integer('helpdesk.ticket', related='equipment_id.ticket_count', String='Tickets Number')
     create_date = fields.Datetime(String='Creation Date', index=True)
 
 

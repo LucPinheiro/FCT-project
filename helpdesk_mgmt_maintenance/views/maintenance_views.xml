@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-
-    <!-- 
-    ##################################
-    Maintenance Dashboard
-    ##################################
-    -->
-
-    <!-- Maintenance Team kanban view -->
-
     <!-- Maintenance Team search view -->
     <record id="help_main_maintenance_team_search" model="ir.ui.view">
         <field name="name">maintenance.team.search (Helpdesk Maintenance)</field>
@@ -26,11 +16,6 @@
         </field>
     </record>
 
-    <!-- 
-    ##################################
-    Maintenance Equipaments 
-    ##################################
-    -->
     <!-- Maintenance Equipament kanban view -->
     <record id="help_main_maintenance_equipaments_kanban" model="ir.ui.view">
         <field name="name">maintenance.equipment.kanban (Helpdesk Maintenance)</field>
@@ -128,10 +113,11 @@
         <field name="model">maintenance.equipment</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='assign_date']" position="after">
+            <!-- <xpath expr="//field[@name='assign_date']" position="after">
                 <field name="equipment_line_ids" string="Line" widget='many2many_tags' />
-            </xpath>
+            </xpath> -->
             <xpath expr="//field[@name='technician_user_id']" position="after">
+               <field name="request_stage_id" string='Request Stage'/>  
                 <field name="ticket_ids" string="Tickets" widget='many2many_tags' />
                 <field name="ticket_count" string="Nº Tickets" />
             </xpath>
@@ -227,17 +213,16 @@
                 <attribute name="invisible">1</attribute>
             </xpath> -->
 
-            <!-- Page Production Information -->
-            <xpath expr="//notebook//page[@name='product_information']" position="inside">
-                <group name="name" string="Lines">
-                        <field name="equipment_line_ids" nolabel="1" />
-                </group>
-            </xpath>
-
             <xpath expr="//notebook//page[@name='maintenance']" position="after">
                 <page string="Helpdesk">
                     <group name="name" string="Lines">
                             <field name="ticket_ids" nolabel="1" />
+                    </group>
+                </page>
+
+                <page string="Projects">
+                    <group name="name" string="Lines">
+                            <field name="equipment_line_ids" nolabel="1" />
                     </group>
                 </page>
 
@@ -253,9 +238,7 @@
                             <field name="scrap_date" />
                         </group>
                      </group>
-
                 </page>
-
 
             </xpath>
         </field> 
@@ -271,11 +254,6 @@
             
         </field>
     </record> -->
-
-    <!-- Maintenance Equipaments Graph view -->
-
-
-
 
     <!-- Maintenance Equipaments Calendar view -->
     <record id="help_main_maintenance_equipaments_calendar" model="ir.ui.view">
@@ -298,35 +276,6 @@
             
         </field>
     </record> -->
-
-    <!-- Maintenance Equipaments activity view -->
-
-    <!-- Maintenance Equipaments map view -->
-
-
-    <!-- 
-    ##################################
-    Maintenance Request
-    ##################################
-    -->
-    <!-- Maintenance Request kanban view -->
-
-    <!-- Maintenance Request tree view -->
-
-    <!-- Maintenance Request pivot view -->
-
-    <!-- Maintenance Request calendar view -->
-
-    <!-- 
-    ##################################
-    Maintenance configuration
-    ##################################
-    -->
-
-
-
-
-
 
 
 </odoo>

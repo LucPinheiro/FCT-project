@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-
-        <data>
-
+    <data>
         <!-- Equipment brand -->
         <record id="brand_samsung" model="maintenance.equipment.brand">
             <field name="name">Samsung</field>
@@ -15,17 +13,14 @@
         </record>
         <record id="brand_lenovo" model="maintenance.equipment.brand">
             <field name="name">Lenovo</field>
-
             <field name="color">3</field>
         </record>
         <record id="brand_dell" model="maintenance.equipment.brand">
             <field name="name">Dell</field>
-
         </record>
         <record id="brand_asus" model="maintenance.equipment.brand">
             <field name="name">Asus</field>
-
-            <!-- <field name="color">3</field> -->
+        <!-- <field name="color">3</field> -->
         </record>
         <record id="brand_msi" model="maintenance.equipment.brand">
             <field name="name">MSI</field>
@@ -34,7 +29,8 @@
             <field name="name">Razer</field>
         </record>
 
-        <!-- Equipment Satus -->
+
+        <!-- Equipment Status -->
         <record id="new_status" model="maintenance.equipment.status">
             <field name="name">New</field>
         </record>

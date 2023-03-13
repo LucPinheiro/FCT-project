@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- 
-    ##################################
-    Project Project
-    ##################################
-    -->
-
     <!-- Project Project tree view -->
     <record id="help_main_maintenance_project_tree" model="ir.ui.view">
         <field name="name">project.project.tree (Helpdesk Maintenance)</field>

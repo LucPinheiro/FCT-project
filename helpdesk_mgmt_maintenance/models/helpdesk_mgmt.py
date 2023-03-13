@@ -6,9 +6,10 @@ from odoo.exceptions import ValidationError
 
 
 # ---------------------------------
-# Helpdesk Ticket : 
+# Helpdesk Ticket: 
 # ---------------------------------
 # Class 1
+
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
@@ -20,7 +21,7 @@ class HelpdeskTicket(models.Model):
     departament_id = fields.Many2one('hr.department')
     serial_no = fields.Char('maintenance.equipment', related='equipment_id.serial_no', String='Serial Number')
     model_equipament = fields.Char('maintenance.equipment', related='equipment_id.model', String ='Modal')
-    equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_id.equipment_brand', String='Brand')
+    # equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_ids.equipment_brand', String='Brand')
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id')
     cost = fields.Float('maintenance.equipment', related='equipment_id.cost', String='Cost')
     description_equipment = fields.Html(String='Description')
@@ -108,6 +109,8 @@ class HelpdeskTicket(models.Model):
     # ---------------------------------
 
 
+
+
     # ---------------------------------
     # Helpdesk Ticket Team: 
     # ---------------------------------
@@ -115,7 +118,6 @@ class HelpdeskTicket(models.Model):
     # Class 2
     class HelpdeskTicketTeam(models.Model):
         _inherit = "helpdesk.ticket.team"
-
 
 
     # ---------------------------------
@@ -148,4 +150,3 @@ class HelpdeskTicket(models.Model):
     # Class 5
     class HelpdeskTicketTag(models.Model):
         _inherit = "helpdesk.ticket.tag"
-

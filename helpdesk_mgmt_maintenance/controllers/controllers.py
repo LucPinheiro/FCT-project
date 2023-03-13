@@ -2,8 +2,8 @@ from odoo.http import request
 from odoo import http, fields
 
 class WebSiteDireccion(http.Controller):
-    @http.route('/productos/<model("product.template"):product>', type='http', auth='none')
-    def fun_product(self, product):
-        return http.request.render('academy.product', {
-            "product": product
+    @http.route('/equipments/<model("maintenance.request"):equipment>', type='http', auth='none')
+    def fun_equipment(self, equipment):
+        return http.request.render('maintenance_request', {
+            "equipment": equipment
         })

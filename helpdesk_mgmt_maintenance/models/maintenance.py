@@ -12,6 +12,11 @@ class MaintenanceEquipment(models.Model):
     _inherit = ["maintenance.equipment", "image.mixin"]
     _name = "maintenance.equipment"
 
+    equipment_ids= fields.Many2many()
+    request_id = fields.Many2one('maintenance.request')
+    request_ids = fields.Many2many('maintenance.request')
+    request_stage_id = fields.Many2one('maintenance.stage', related='request_id.request_stage_id', String='Request Stage')
+
     ticket_id = fields.Char(String='Tickets Number')
     ticket_active = fields.Boolean()
     ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')

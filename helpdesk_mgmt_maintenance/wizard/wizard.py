@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
+# License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
+
 
 from email.policy import default
 from odoo import fields, models, api
@@ -42,4 +44,4 @@ class MaintenanceEquipmentWizard(models.TransientModel):
             'orders': orders
         }
 
-        return self.env.ref('helpdesk_mgmt_maintenance.action_equipment_line_traceability_template').report_action(self, data=data)
+        return self.env.ref('helpdesk_mgmt_maintenance.action_report_equipment').report_action(self, data=data)

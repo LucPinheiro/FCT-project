@@ -24,10 +24,3 @@ class Tracealibity(models.Model):
     ('lot', 'By Lots'),
     ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
     
-
-
-    # def name_get(self):
-    # res = []
-    # for rec in self:
-    #     res.append((rec.id, rec.number + " - " + rec.name))
-    # return res

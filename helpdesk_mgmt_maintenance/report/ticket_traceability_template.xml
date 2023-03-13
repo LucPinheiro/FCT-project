@@ -57,12 +57,11 @@
                                             <!-- <th class="text-right">Progress</th> -->
                                         </tr>
                                     </thead>
-                                    <tbody class="equipement_tbody">
+                                    <tbody class="equipment_tbody">
                                           <t t-set="equipment_ids_count" t-value="0"/>
                                             <t t-foreach="doc.equipment_ids" t-as="line">
                                                 <t t-set="equipment_ids_count" t-value="equipment_ids_count + 1"/>
-                                                <tr>
-                                                    
+                                                <tr>  
                                                     <td> <span t-field="line.name" /> </td>
                                                     <td> <span t-field="line.serial_no"/> </td>
                                                     <td> <span t-field="line.equipment_brand"/> </td>
@@ -94,7 +93,7 @@
         <field name="report_type">qweb-html</field>
         <field name="report_name">helpdesk_mgmt_maintenance.ticket_traceability_report_template</field>
         <field name="report_file">helpdesk_mgmt_maintenance.ticket_traceability_report_template</field>
-        <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/>
+        <field name="binding_model_id" ref="helpdesk_mgmt.model_helpdesk_ticket"/>
         <field name="binding_type">report</field>
     </record>
 

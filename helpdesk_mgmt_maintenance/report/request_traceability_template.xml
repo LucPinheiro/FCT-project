@@ -48,6 +48,8 @@
                                             <tr style="background-color:lightgray;">
                                                 <th>Equipment</th>
                                                 <th>Serial number</th>
+                                                <th>Brand</th>
+                                                
                                                 <th>Category</th>
                                                 <th>Technician</th>
                                                 <th>Tickets</th>
@@ -61,6 +63,7 @@
                                                     <tr>
                                                         <td style="font-weight: bold"> <span t-field="line.name" /> </td>
                                                         <td> <span t-field="line.serial_no"/> </td>
+                                                        <td> <span t-field="line.equipment_brand"/> </td>
                                                         <td> <span t-field="line.category_id"/> </td>
                                                         <td> <span t-field="line.technician_user_id"/> </td>
                                                         <td> 

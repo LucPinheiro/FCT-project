@@ -137,9 +137,9 @@
     <!-- Action Helpdesk Tickets Projects-->
     <record id="helpdesk_mgmt_projects_action" model="ir.actions.act_window">
         <field name="name">Projects</field>
+        <field name="type">ir.actions.act_window</field>
         <field name="res_model">project.project</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
-        <field name="domain">[('ticket_ids', '=', active_id)]</field>
+        <field name="view_mode">tree,form,pivot</field>
     </record>
     <!-- Menu Item Helpdesk Tickets Projects -->
     <menuitem 

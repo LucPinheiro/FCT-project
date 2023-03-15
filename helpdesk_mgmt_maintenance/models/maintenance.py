@@ -12,13 +12,14 @@ class MaintenanceEquipment(models.Model):
     _inherit = ["maintenance.equipment", "image.mixin"]
     _name = "maintenance.equipment"
 
-    equipment_ids= fields.Many2many()
+    equipment_ids = fields.Many2many()
     request_id = fields.Many2one('maintenance.request')
     request_ids = fields.Many2many('maintenance.request')
     request_stage_id = fields.Many2one('maintenance.stage', related='request_id.request_stage_id', String='Request Stage')
-
     ticket_id = fields.Char(String='Tickets Number')
-    ticket_active = fields.Boolean()
+    ticket_active = fields.Selection(
+        selection=[("yes", "Yes"),("not", "Not")],
+        String= "Ticket", default="yes", required=True)
     ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')
     ticket_count = fields.Integer('helpdesk.ticket', compute='_compute_ticket_count', store=True)
     name_ticket = fields.Char(String='Ticket Name')
@@ -43,12 +44,23 @@ class MaintenanceEquipment(models.Model):
         ('lot', 'By Lots'),
         ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
     model = fields.Char('Model Number', copy=False)
+    kanban_state = fields.Selection([('normal', 'In Working'), ('blocked', 'Blocked'), ('scrap', 'Scrap')],
+                                    string='Kanban State', required=True, default='normal', tracking=True)
     equipment_brand = fields.Many2one('maintenance.equipment.brand', String='Brand')
-    equipment_status_id = fields.Many2one('maintenance.equipment.status', String='Status')
+   
+   
     schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. ")
     create_date = fields.Datetime(String='Creation Date', index=True)
     equipment_line_ids = fields.Many2many('maintenance.equipment.line', inverse_name='equipment_id')
 
+
+    # equipment_status_id_count = fields.Integer('maintenance.equipment.status', compute='_compute_equipment_status_id_count')
+    equipment_status_id = fields.Many2one('maintenance.equipment.status', String='Status')
+
+    status_id = fields.Selection([
+        ('new', 'New'),
+        ('repared', 'Repared'),
+        ('scrap', 'Scrap')])
 
     # ---------------------------------
     # DEPENDS METHODS: compute function
@@ -58,6 +70,17 @@ class MaintenanceEquipment(models.Model):
     def _compute_ticket_count(self):
        for  ticket in self:
             ticket.ticket_count = len(ticket.ticket_ids)
+
+    # @api.depends('ticket_ids')
+    def _compute_ticket_active(self):
+        for bool_active in self:
+            if bool_active.ticket_ids == True:
+                bool_active.ticket_active = "yes"
+            else: 
+                bool_active.ticket_active = "not"
+
+    
+   
 
     # _sql_constraints = [
     #         ('name_uniq', 'UNIQUE (name)',  'You can not have two users with the same name !')
@@ -74,6 +97,12 @@ class MaintenanceEquipment(models.Model):
     #     (_check_name, 'Name must have at least 6 characters.', ['name'])
     # ]
 
+
+
+    # @api.constrains("pages")
+    # def create(self, values):
+    #     if values.get("ticket_ids") == True:
+    #         raise ValidationError('No se puede guardar pq hay ticktes')
 
     # ------------------------------------
     # CONSTRAINS METHODS: compute function
@@ -98,6 +127,23 @@ class MaintenanceEquipment(models.Model):
 #                 result.append((record.id, record.name))
 #         return result
 
+
+
+
+    # def _compute_active_ticket(self):
+        # for bool_active in self:
+        #     if bool_active.ticket_no_active == True:
+        #      bool_active.ticket_ids = False
+        #     else:
+        #         bool_active.ticket_ids = True
+
+    # @api.depends('ticket_ids')
+    # def _compute_active_ticket(self):   
+    #     for active in self:
+    #         if active.ticket_no_active == True:
+    #              self.hide = True
+    #         else:
+    #             self.hide = False
 
 
 class Department(models.Model):

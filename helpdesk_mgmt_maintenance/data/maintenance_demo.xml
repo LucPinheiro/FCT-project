@@ -39,6 +39,7 @@
         </record>
         <record id="new_scrap" model="maintenance.equipment.status">
             <field name="name">Scrap</field>
+            <field name="scrap" eval="True" />
         </record>
   </data>
 </odoo>

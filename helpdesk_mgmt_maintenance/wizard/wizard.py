@@ -45,3 +45,4 @@ class MaintenanceEquipmentWizard(models.TransientModel):
         }
 
         return self.env.ref('helpdesk_mgmt_maintenance.action_report_equipment').report_action(self, data=data)
+    

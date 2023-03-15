@@ -13,6 +13,7 @@ from odoo.exceptions import ValidationError
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
+    ticket_ids = fields.Many2many(String='Tickets Number')
     equipment_id = fields.Many2one('maintenance.equipment', String= 'Equipments', required=True)
     employee_id_hr = fields.Many2one('hr.employee', String= 'Equipments')
     equipment_ids = fields.Many2many('maintenance.equipment', String= 'Equipments')

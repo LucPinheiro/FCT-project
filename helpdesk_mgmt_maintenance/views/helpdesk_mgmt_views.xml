@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!--###########################################
-    # Helpdesk Ticket: 
-    ############################################-->
+    <!-- Default filter  Project-->
+        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_this_week": 1} </field>
+        </record> -->
+
+    <!-- Project button action  -->
+    <record id="helpdesk_tickets_action_from_project" model="ir.actions.act_window">
+    <field name="name">Project Project</field> 
+    <field name="res_model">project.project</field>
+    <field name="binding_model_id" ref="project.model_project_project"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+ 
+    </record> 
+
+    <!-- Tasks Project button action  -->
+    <record id="helpdesk_tickets_action_from_project_task" model="ir.actions.act_window">
+    <field name="name">Project Tack</field> 
+    <field name="res_model">project.task</field>
+    <field name="binding_model_id" ref="project.model_project_task"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+    </record>
+
+    <!-- Default filter  Equipament-->
+        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_this_week": 1} </field>
+        </record> -->
+
+    <!-- Equipment button action -->
+    <record id="helpdesk_tickets_action_from_equipment" model="ir.actions.act_window">
+    <field name="name">Maintenance Equipment</field>
+    <field name="res_model">maintenance.equipment</field>
+    <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+    </record> 
 
     <!-- Helpdesk Ticket kanban view -->
 
@@ -29,42 +63,6 @@
         </field>
     </record>
 
-
-    <!-- Default filter  Project-->
-        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
-            <field name="context">{"search_default_this_week": 1} </field>
-        </record> -->
-
-    <!-- Project button action  -->
-    <record id="helpdesk_tickets_action_from_project" model="ir.actions.act_window">
-    <field name="name">Project Project</field> 
-    <field name="res_model">project.project</field>
-    <field name="binding_model_id" ref="project.model_project_project"/> 
-    <field name="view_mode">kanban,tree,form</field>
-    </record> 
-
-    <!-- Tasks Project button action  -->
-    <record id="helpdesk_tickets_action_from_project_task" model="ir.actions.act_window">
-    <field name="name">Project Tack</field> 
-    <field name="res_model">project.task</field>
-    <field name="binding_model_id" ref="project.model_project_task"/> 
-    <field name="view_mode">kanban,tree,form</field>
-    <field name="domain">[('ticket_ids', '=', active_id)]</field>
-    </record>
-
-    <!-- Default filter  Equipament-->
-        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
-            <field name="context">{"search_default_this_week": 1} </field>
-        </record> -->
-
-    <!-- Equipment button action -->
-    <record id="helpdesk_tickets_action_from_equipment" model="ir.actions.act_window">
-    <field name="name">Maintenance Equipment</field>
-    <field name="res_model">maintenance.equipment</field>
-    <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/> 
-    <field name="view_mode">kanban,tree,form</field>
-    <field name="domain">[('ticket_ids', '=', active_id)]</field>
-    </record> 
 
     <!-- Helpdesk Ticket form view -->
     <record id="help_main_helpdesk_ticket_form" model="ir.ui.view">
@@ -129,10 +127,20 @@
 
             <xpath expr="//notebook//page[@name='other_info']" position="after">
                 <page string="Maintenance">
-                    <group name="name" string="Lines">
-                        <field name="equipment_ids" nolabel="1" />
+                    <group name="name" string="Equipment Line">
+                        <field name="equipment_ids" nolabel="1" >  
+                            <tree>
+                                <field name="name" />
+                                <field name="serial_no" />
+                                <field name="equipment_brand" />
+                                <field name="technician_user_id" />
+                                <field name="category_id" />
+                                <field name="status_id" />
+                                <field name="ticket_ids" />
+                            </tree>
+                        </field>
                     </group>
-                </page>
+                 </page>
 
                 <page string="Timesheet">
                     <group>

@@ -7,15 +7,24 @@ from odoo import models, fields, api, SUPERUSER_ID, _
 class MaintenanceRequest(models.Model):
     _inherit = "maintenance.request"
     
-
+    request_stage_id = fields.Many2one('maintenance.stage', string='Stage')
     equipment_ids= fields.Many2many('maintenance.equipment')
     equipment_ids_count = fields.Integer('maintenance.equipment', compute= '_compute_equipment_ids_count', store=True, String= 'Nº Equipment')
-    request_stage_id = fields.Many2one('maintenance.stage', string='Stage')
-    # category_ids = fields.Many2many('maintenance.equipment.category', related='equipment_ids.category_ids', string='Category', store=True, readonly=True)
-    ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')
-    # ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_ids.ticket_ids', String='Tickets Number')
-    ticket_count = fields.Integer('helpdesk.ticket', compute='_compute_ticket_count', store=True, String= 'Nº Ticket')
+    equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_ids.equipment_brand',String='Brand')
+    equipment_status_id = fields.Many2one('maintenance.equipment.status', related='equipment_ids.equipment_status_id', String='Status')
 
+    status_id = fields.Selection('maintenance.equipment', related='equipment_ids.status_id')  
+    new_status_id_count = fields.Integer('maintenance.equipment',
+            compute='_compute_status_count', String='Nº Status')
+    repared_status_id_count = fields.Integer('maintenance.equipment',
+            compute='_compute_status_count', String='Nº Status')
+    scrap_status_id_count = fields.Integer('maintenance.equipment',
+            compute='_compute_status_count', String='Nº Status')
+       
+    # category_ids = fields.Many2many('maintenance.equipment.category', related='equipment_ids.category_ids', string='Category', store=True)
+    # ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')
+    ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_ids.ticket_ids', String='Tickets Number')
+    ticket_count = fields.Integer('helpdesk.ticket', compute='_compute_ticket_count', store=True, String= 'Nº Ticket')
     tracking = fields.Selection([
     ('serial', 'By Unique Serial Number'),
     ('lot', 'By Lots'),
@@ -35,6 +44,13 @@ class MaintenanceRequest(models.Model):
     def _compute_ticket_count(self):
        for  ticket in self:
             ticket.ticket_count = len(ticket.ticket_ids)
+
+    @api.depends('equipment_ids')
+    def _compute_status_count(self):
+            for status in self:
+                status.new_status_id_count = len(status.equipment_ids.filtered(lambda x: x.status_id == "new")) 
+                status.repared_status_id_count = len(status.equipment_ids.filtered(lambda x: x.status_id == "repared"))
+                status.scrap_status_id_count = len(status.equipment_ids.filtered(lambda x: x.status_id == "scrap"))
 
     # ---------------------------------
     # Actions METHODS: Email function

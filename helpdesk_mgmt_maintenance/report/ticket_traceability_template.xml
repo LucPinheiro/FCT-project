@@ -42,6 +42,14 @@
                             <strong>Assigned user:</strong>
                             <p class="m-0" t-field="doc.user_id"/>
                         </div>
+                        <!-- <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Duraction:</strong>
+                            <p class="m-0" t-field="doc.total_time" t-options="{'widget': 'float_time'}"/>
+                        </div> -->
+                        <!-- 
+                        <t t-set="expected_days_int" t-value="int(doc.expected_days)"/>
+                        <strong>Expected:</strong>
+                        <p> <t t-esc="expected_days_int" /> days </p> -->
                     </div> 
 
                         <t t-if="doc.equipment_ids">

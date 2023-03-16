@@ -143,8 +143,14 @@
                  </page>
 
                 <page string="Timesheet">
-                    <group>
-
+                    <group  name="name" string="Line">
+                        <field name="ticket_ids_line" nolabel="1" >
+                            <tree editable="bottom" >
+                                <field name="date_start" string='Begin hour' />
+                                <field name="date_end"  string='End hour' />
+                                <field name="total_time" string="Duraction"  widget="float_time" sum="Hours"/>
+                            </tree>
+                        </field> 
                     </group>
                 </page>
 

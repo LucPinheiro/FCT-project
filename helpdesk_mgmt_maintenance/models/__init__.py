@@ -6,4 +6,4 @@ from . import traceability
 from . import maintenance_equipment_brand
 from . import maintenance_equipment_status
 from . import maintenance_request
-# from . import hr_maintenance_equipment
+from . import helpdesk_ticket_line

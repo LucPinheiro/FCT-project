@@ -149,6 +149,21 @@
             sequence="113"
     />
 
+        <!-- Action Helpdesk Tickets Timesheet-->
+    <record id="helpdesk_mgmt_helpdesk_tickets_line_action" model="ir.actions.act_window">
+        <field name="name">Ticket Timesheet Sheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">helpdesk.ticket.line</field>
+        <field name="view_mode">form,pivot</field>
+    </record>
+    <!-- Menu Item Helpdesk Tickets Timesheet -->
+    <menuitem 
+            id="helpdesk_helpdesk_tickets_line_menu_item"
+            parent="helpdesk_mgmt.helpdesk_ticket_menu"
+            action="helpdesk_mgmt_helpdesk_tickets_line_action"
+            sequence="115"
+    />
+
 
     <!-- Menu Item Helpdesk Tickets Data -->
     <menuitem

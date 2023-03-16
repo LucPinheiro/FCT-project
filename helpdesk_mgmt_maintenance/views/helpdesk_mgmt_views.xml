@@ -57,7 +57,7 @@
             </xpath> -->
             <xpath expr="//field[@name='last_stage_update']" position="after">
                 <field name="equipment_ids_count" string="Nº equip" />
-                <field name="progress"  widget="progressbar" optional="show" />
+                <!-- <field name="progress"  widget="progressbar" optional="show" /> -->
                 <!-- <field name="progress" widget="progressbar" optional="show" options="{'current_value': 'progress', 'max_value': '100', 'editable': true}"/> -->
             </xpath>
         </field>
@@ -123,6 +123,20 @@
             <!-- Hide company field view tree -->
             <xpath expr="//field[@name='company_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='assigned_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='assigned_date']" position="after">
+                <field name="initially_date" />
+                <field name="planned_hours" />
+                 <!-- <field name="worked_hours" /> -->
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='closed_date']" position="after">
+                <field name="total_hour" widget="float_time" />
             </xpath>
 
             <xpath expr="//notebook//page[@name='other_info']" position="after">

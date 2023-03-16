@@ -35,7 +35,7 @@
         "views/helpdesk_mgmt_views.xml",
         "views/helpdesk_ticket_line_views.xml",
         "views/project_views.xml",
-        "wizard/wizard.xml",
+        # "wizard/wizard.xml",
        
     ],
     'installable': True,

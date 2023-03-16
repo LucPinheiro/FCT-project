@@ -26,9 +26,9 @@ class MaintenanceRequest(models.Model):
     ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_ids.ticket_ids', String='Tickets Number')
     ticket_count = fields.Integer('helpdesk.ticket', compute='_compute_ticket_count', store=True, String= 'Nº Ticket')
     tracking = fields.Selection([
-    ('serial', 'By Unique Serial Number'),
-    ('lot', 'By Lots'),
-    ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
+        ('serial', 'By Unique Serial Number'),
+        ('lot', 'By Lots'),
+        ('none', 'No Tracking')], String="Tracking", default='serial', required=True)
 
 
     # ---------------------------------

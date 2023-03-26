@@ -1,1 +1,1 @@
-Connect Odoo maintenance addon and OCA helpdesk_mgmt addon.
+Relate tickets to equipment in a maintenance request

@@ -1,5 +1,5 @@
-# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# © 2023 LuoDoo, Desarrollo de soluciones tecnólogicas (<http://www.luodoo.es>)
+# License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import models, fields, api, SUPERUSER_ID, _
 
@@ -8,11 +8,10 @@ class MaintenanceRequest(models.Model):
     _inherit = "maintenance.request"
     
     request_stage_id = fields.Many2one('maintenance.stage', string='Stage')
-    equipment_ids= fields.Many2many('maintenance.equipment')
+    equipment_ids = fields.Many2many('maintenance.equipment')
     equipment_ids_count = fields.Integer('maintenance.equipment', compute= '_compute_equipment_ids_count', store=True, String= 'Nº Equipment')
     equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_ids.equipment_brand',String='Brand')
     equipment_status_id = fields.Many2one('maintenance.equipment.status', related='equipment_ids.equipment_status_id', String='Status')
-
     status_id = fields.Selection('maintenance.equipment', related='equipment_ids.status_id')  
     new_status_id_count = fields.Integer('maintenance.equipment',
             compute='_compute_status_count', String='Nº Status')
@@ -20,9 +19,6 @@ class MaintenanceRequest(models.Model):
             compute='_compute_status_count', String='Nº Status')
     scrap_status_id_count = fields.Integer('maintenance.equipment',
             compute='_compute_status_count', String='Nº Status')
-       
-    # category_ids = fields.Many2many('maintenance.equipment.category', related='equipment_ids.category_ids', string='Category', store=True)
-    # ticket_ids = fields.Many2many('helpdesk.ticket', String='Tickets Number')
     ticket_ids = fields.Many2many('helpdesk.ticket', related='equipment_ids.ticket_ids', String='Tickets Number')
     ticket_count = fields.Integer('helpdesk.ticket', compute='_compute_ticket_count', store=True, String= 'Nº Ticket')
     tracking = fields.Selection([

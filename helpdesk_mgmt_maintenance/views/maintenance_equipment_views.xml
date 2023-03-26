@@ -3,6 +3,7 @@
 
 
     <!-- Maintenance Team search view -->
+    <!-- Maintenance Search Falta -->
     <record id="help_main_maintenance_team_search" model="ir.ui.view">
         <field name="name">maintenance.team.search (Helpdesk Maintenance)</field>
         <field name="model">maintenance.team</field>
@@ -226,7 +227,7 @@
 
                 <page string="Projects">
                     <group name="name" string="Lines">
-                            <field name="equipment_line_ids" nolabel="1" />
+                            <field name="project_ids" nolabel="1" />
                     </group>
                 </page>
 

@@ -1,5 +1,5 @@
-# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
-# License LGPL-3 - See http://www.gnu.org/licenses/lgpl-3.0.html
+# © 2023 LuoDoo, Desarrollo de soluciones tecnólogicas (<http://www.luodoo.es>)
+# License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import models, fields
 

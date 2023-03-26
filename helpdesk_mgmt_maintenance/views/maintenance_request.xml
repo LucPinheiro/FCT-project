@@ -136,12 +136,12 @@
 
                     <page string="Equipments">
                         <group name="name" string="Line">
-                            <field name="equipment_ids" nolabel="1" >  
-                              <tree>
-                                   <field name="name" />
-                                    <field name="serial_no" />
-                             </tree>
-                            </field>
+                            <field name="equipment_ids" nolabel="1" > 
+                                <tree>
+                                    <field name="name" />
+                                    <field name="serial_no"  />
+                                </tree>
+                             </field>
                         </group>
                     </page>
 
@@ -184,6 +184,7 @@
                                     <field name="serial_no" />
                                     <field name="equipment_brand" string="Brand"/>
                                     <field name="status_id" string="Status"/>
+                                    <field name="ticket_ids" string="Tickets" widget='many2many_tags'/>
                                 </tree>
                             </field>
                         </group>

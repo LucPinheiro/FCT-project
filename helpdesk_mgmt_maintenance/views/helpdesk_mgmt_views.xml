@@ -39,26 +39,14 @@
     <field name="domain">[('ticket_ids', '=', active_id)]</field>
     </record> 
 
-    <!-- Helpdesk Ticket kanban view -->
-
-
-
-
-
-
     <!-- Helpdesk Ticket tree view -->
     <record id="help_main_helpdesk_ticket_tree" model="ir.ui.view">
         <field name="name">helpdesk.ticket.tree (Helpdesk Maintenance)</field>
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_tree"/>
         <field name="arch" type="xml">
-            <!-- <xpath expr="//field[@name='project_id']" position="after">
-                <field name="task_id" />
-            </xpath> -->
             <xpath expr="//field[@name='last_stage_update']" position="after">
                 <field name="equipment_ids_count" string="Nº equip" />
-                <!-- <field name="progress"  widget="progressbar" optional="show" /> -->
-                <!-- <field name="progress" widget="progressbar" optional="show" options="{'current_value': 'progress', 'max_value': '100', 'editable': true}"/> -->
             </xpath>
         </field>
     </record>
@@ -150,7 +138,7 @@
                                 <field name="technician_user_id" />
                                 <field name="category_id" />
                                 <field name="status_id" />
-                                <field name="ticket_ids" />
+                                <field name="ticket_ids" widget='many2many_tags' string='Tickets' />
                             </tree>
                         </field>
                     </group>
@@ -207,11 +195,4 @@
         </field>
     </record> 
     
-
-
-    <!-- Helpdesk Ticket Search view -->
-
-
-
-
 </odoo>

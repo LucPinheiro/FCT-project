@@ -13,24 +13,9 @@
     <!-- Menu Item Maintenance Equipments Equipments -->
     <menuitem 
             id="helpdesk_mgmt_equipments_equipments_menu_item"
-            parent="maintenance.menu_equipment_form"
+            parent="maintenance.menu_m_request"
             action="helpdesk_mgmt_equipments_equipments_action"
-            sequence="111"
-    />
-
-   <!-- Action Maintenance Equipments Lines -->
-    <record id="helpdesk_mgmt_equipments_line_action" model="ir.actions.act_window">
-        <field name="name">Equipments Lines</field>
-        <field name="res_model">maintenance.equipment.line</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
-    </record>
-
-    <!-- Menu Item Maintenance Equipments Lines -->
-    <menuitem 
-            id="helpdesk_mgmt_equipments_lines_menu_item"
-            parent="maintenance.menu_equipment_form"
-            action="helpdesk_mgmt_equipments_line_action"
-            sequence="112"
+            sequence="3"
     />
 
     <!-- Action Maintenance Equipments Tickets -->
@@ -46,8 +31,24 @@
             id="helpdesk_mgmt_equipments_tickets_menu_item"
             parent="maintenance.menu_equipment_form"
             action="helpdesk_mgmt_equipments_tickets_action"
+            sequence="112"
+    />
+
+   <!-- Action Project Lines -->
+    <record id="helpdesk_mgmt_project_project_line_action" model="ir.actions.act_window">
+        <field name="name">Project Lines</field>
+        <field name="res_model">project.project.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item Maintenance Equipments Lines -->
+    <menuitem 
+            id="helpdesk_mgmt_projet_lines_menu_item"
+            parent="maintenance.menu_equipment_form"
+            action="helpdesk_mgmt_project_project_line_action"
             sequence="113"
     />
+
 
     <!-- Action Maintenance Equipments Traceability-->
    <record id="helpdesk_mgmt_traceability_action" model="ir.actions.act_window">
@@ -115,7 +116,7 @@
     <!-- Menu Item Helpdesk Tickets Tickets -->
     <menuitem 
             id="helpdesk_tickets_tickets_menu_item"
-            parent="helpdesk_mgmt.helpdesk_ticket_menu"
+            parent="helpdesk_mgmt.helpdesk_ticket_dashboard_menu"
             action="helpdesk_mgmt_tickets_action"
             sequence="111"
     />

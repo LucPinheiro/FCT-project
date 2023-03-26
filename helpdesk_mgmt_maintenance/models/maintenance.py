@@ -1,4 +1,4 @@
-# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
+# © 2023 LuoDoo, Desarrollo de soluciones tecnólogicas (<http://www.luodoo.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import  models, fields, api
@@ -12,7 +12,6 @@ class MaintenanceEquipment(models.Model):
     _inherit = ["maintenance.equipment", "image.mixin"]
     _name = "maintenance.equipment"
 
-    equipment_ids = fields.Many2many()
     request_id = fields.Many2one('maintenance.request')
     request_ids = fields.Many2many('maintenance.request')
     request_stage_id = fields.Many2one('maintenance.stage', related='request_id.request_stage_id', String='Request Stage')
@@ -51,8 +50,8 @@ class MaintenanceEquipment(models.Model):
    
     schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. ")
     create_date = fields.Datetime(String='Creation Date', index=True)
-    equipment_line_ids = fields.Many2many('maintenance.equipment.line', inverse_name='equipment_id')
-
+    project_line_ids = fields.Many2many('project.project.line', String='Project Lines')
+    project_ids = fields.Many2many('project.project', String='Project Lines')
 
     # equipment_status_id_count = fields.Integer('maintenance.equipment.status', compute='_compute_equipment_status_id_count')
     equipment_status_id = fields.Many2one('maintenance.equipment.status', String='Status')
@@ -71,6 +70,11 @@ class MaintenanceEquipment(models.Model):
        for  ticket in self:
             ticket.ticket_count = len(ticket.ticket_ids)
 
+    @api.depends('project_id')
+    def _compute_project_ids_count(self):
+        for project in self:
+            project.project_ids_count = len(project.project_id)
+
     # @api.depends('ticket_ids')
     def _compute_ticket_active(self):
         for bool_active in self:
@@ -78,104 +82,3 @@ class MaintenanceEquipment(models.Model):
                 bool_active.ticket_active = "yes"
             else: 
                 bool_active.ticket_active = "not"
-
-    
-   
-
-    # _sql_constraints = [
-    #         ('name_uniq', 'UNIQUE (name)',  'You can not have two users with the same name !')
-    #     ]
-
-    # def _check_name(self, cr, uid, ids, context=None):
-    #         for val in self.read(cr, uid, ids, ['name'], context=context):
-    #             if val['name']:
-    #                 if len(val['name']) < 6:
-    #                     return False
-    #         return True
-
-    # _constraints = [
-    #     (_check_name, 'Name must have at least 6 characters.', ['name'])
-    # ]
-
-
-
-    # @api.constrains("pages")
-    # def create(self, values):
-    #     if values.get("ticket_ids") == True:
-    #         raise ValidationError('No se puede guardar pq hay ticktes')
-
-    # ------------------------------------
-    # CONSTRAINS METHODS: compute function
-    # ------------------------------------
-
-    # @api.constrains('create_date_ticket')
-    # def _check_create_date_ticket(self):
-    #     for record in self:
-    #         if record.create_date_ticket < fields.Date.today():
-    #             raise ValidationError("Creation date cannot be created in the past")
-
-
-    # ---------------------------------
-    # CRUD
-    # ---------------------------------
-#    def name_get(self):
-#         result = []
-#         for record in self:
-#             if record.name and record.serial_no:
-#                 result.append((record.id, record.name + '/' + record.serial_no))
-#             if record.name and not record.serial_no:
-#                 result.append((record.id, record.name))
-#         return result
-
-
-
-
-    # def _compute_active_ticket(self):
-        # for bool_active in self:
-        #     if bool_active.ticket_no_active == True:
-        #      bool_active.ticket_ids = False
-        #     else:
-        #         bool_active.ticket_ids = True
-
-    # @api.depends('ticket_ids')
-    # def _compute_active_ticket(self):   
-    #     for active in self:
-    #         if active.ticket_no_active == True:
-    #              self.hide = True
-    #         else:
-    #             self.hide = False
-
-
-class Department(models.Model):
-    _inherit = 'hr.department'
-
-    # def name_get(self):
-    #     # Get department name using superuser, because model is not accessible
-    #     # for portal users
-    #     self_sudo = self.sudo()
-    #     return super(Department, self_sudo).name_get()
-
-
-    # def name_get(self):
-    #     res = super()._get_name()
-    #     for record in self:
-    #         if record.name and record.serial_no:
-    #             res.append((record.id, record.name + '/' + record.serial_no + '-' + record.ticket_ids))
-    #         if record.name and record.serial_no and not record.ticket_ids:
-    #             res.append((record.id, record.name))
-    #         if record.name and not record.serial_no:
-    #             res.append((record.id, record.name))
-    #     return res
-    
-    # def _compute_access_url(self):
-    #     res = super()._compute_access_url()
-    #     for item in self:
-    #         item.access_url = "/my/ticket/%s" % (item.id)
-    #     return res
-
-
-    
-    # ---------------------------------
-    # CRUD
-    # ---------------------------------
-    

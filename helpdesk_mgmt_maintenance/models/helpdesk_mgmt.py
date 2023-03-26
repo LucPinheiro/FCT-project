@@ -1,4 +1,4 @@
-# © 2023 Lucia Pinero Consultoría Informática (<http://www.luciapinero.es>)
+# © 2023 LuoDoo, Desarrollo de soluciones tecnólogicas (<http://www.luodoo.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
 from odoo import  _, models, fields, api
@@ -12,10 +12,7 @@ from odoo.exceptions import ValidationError
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
-    name = fields.Char('helpdesk.ticket')
-    number = fields.Char('helpdesk.ticket')
-    ticket_id = fields.Many2one('helpdesk.ticket')
-    ticket_ids = fields.Many2many(String='Tickets Number')
+
     ticket_ids_line = fields.One2many(
          'helpdesk.ticket.line', 'ticket_id',
          String='Ticket Lines')
@@ -27,15 +24,12 @@ class HelpdeskTicket(models.Model):
     departament_id = fields.Many2one('hr.department')
     serial_no = fields.Char('maintenance.equipment', related='equipment_id.serial_no', String='Serial Number')
     model_equipament = fields.Char('maintenance.equipment', related='equipment_id.model', String ='Modal')
-    # equipment_brand = fields.Many2one('maintenance.equipment.brand', related='equipment_ids.equipment_brand', String='Brand')
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id')
     cost = fields.Float('maintenance.equipment', related='equipment_id.cost', String='Cost')
     description_equipment = fields.Html(String='Description')
-
     date_start = fields.Datetime(default=fields.Datetime.now, required=True)
     date_end = fields.Datetime(string="Check Out")
     total_time = fields.Float(compute="_compute_total_time", store=True)
-
     value_x = fields.Char(string="Date Name")
     value_y = fields.Char(string="Ticket Name")
     default_date_end = fields.Date('helpdesk.ticket')
@@ -44,12 +38,8 @@ class HelpdeskTicket(models.Model):
     project_id_count = fields.Integer('project.project', compute= '_compute_project_id_count', store=True)
     task_id = fields.Many2one('project.task', string='Task')
     task_id_count = fields.Integer('project.task', compute= '_compute_task_id_count', store=True)
-    
-    # progress = fields.Float("Progress", compute='_compute_progress_percentage', store=True)
-    # progress_percentage = fields.Float(compute='_compute_progress_percentage' , group_operator="avg")
     initially_date = fields.Datetime(default=fields.Datetime.now)
     planned_hours = fields.Float(string="Planned hours")
-    # worked_hours = fields.Float(string="Worked hours", )
     total_hour = fields.Float(string="Total hours", compute='_compute_total_hour')
 
     tracking = fields.Selection([

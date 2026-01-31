@@ -2,9 +2,6 @@
 
 ## Helpdesk mgmt Maintenance
 
-![Beta](https://img.shields.io/badge/maturity-Beta-yellow.png)
-[![License: LGPL-3](https://img.shields.io/badge/licence-LGPL--3-blue.png)](http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
-[![GitHub](https://img.shields.io/badge/github-solvosci%2Fslv--h--m-lightgray.png?logo=github)](https://github.com/solvosci/slv-h-m/tree/15.0/helpdesk_mgmt_maintenance)
 
 Relate tickets to equipment in a maintenance request.
 
